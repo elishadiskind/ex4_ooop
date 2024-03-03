@@ -24,12 +24,9 @@ import java.util.List;
 public class PepseGameManager extends GameManager {
 
     private static final String GAME_MANAGER_NAME = "pepse";
-    private static final float WINDOW_X = 500;
-    private static final float WINDOW_Y = 500;
-
+    private static final float WINDOW_X = 700;
+    private static final float WINDOW_Y = 700;
     public static final int CYCLE_LENGTH = 30;
-
-
     public static final String SKY_TAG = "sky";
     private Vector2 windowDimensions;
 

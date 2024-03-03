@@ -19,7 +19,7 @@ public class Sun {
                 new OvalRenderable(Color.YELLOW));
         sun.setCenter(windowDimensions.mult(0.5f));
         Vector2 initialSunCenter = windowDimensions.mult(0.5f).subtract(new Vector2(SUN_SIZE,SUN_SIZE));
-        Vector2 cycleCenter = new Vector2(windowDimensions.mult(0.5f).x(),windowDimensions.mult(0.5f).y()); // y should be the ground high
+        Vector2 cycleCenter = new Vector2(windowDimensions.mult(0.5f).x(),windowDimensions.mult(2/3f).y());
         sun.setCoordinateSpace(CoordinateSpace.CAMERA_COORDINATES);
         sun.setTag(SUN_TAG);
 

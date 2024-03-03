@@ -47,8 +47,6 @@ public class Terrain {
                 block.setTag(GROUND_TAG);
                 blockList.add(block);
             }
-
-
         }
 
         return blockList;
