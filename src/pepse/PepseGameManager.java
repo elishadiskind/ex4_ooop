@@ -9,7 +9,7 @@ import danogl.util.Vector2;
 
 public class PepseGameManager extends GameManager {
 
-    private static final String GAME_MANAGER_NAME = "whatever";
+    private static final String GAME_MANAGER_NAME = "pepse";
     private static final float WINDOW_X = 300;
     private static final float WINDOW_Y = 300;
 
