@@ -5,6 +5,7 @@ import danogl.components.CoordinateSpace;
 import danogl.components.Transition;
 import danogl.gui.rendering.OvalRenderable;
 import danogl.util.Vector2;
+import pepse.PepseGameManager;
 
 import java.awt.*;
 
@@ -19,7 +20,7 @@ public class Sun {
                 new OvalRenderable(Color.YELLOW));
         sun.setCenter(windowDimensions.mult(0.5f));
         Vector2 initialSunCenter = windowDimensions.mult(0.5f).subtract(new Vector2(SUN_SIZE,SUN_SIZE));
-        Vector2 cycleCenter = new Vector2(windowDimensions.mult(0.5f).x(),windowDimensions.mult(2/3f).y());
+        Vector2 cycleCenter = new Vector2(windowDimensions.mult(0.5f).x(),windowDimensions.mult(PepseGameManager.EARTH_HIGHT).y());
         sun.setCoordinateSpace(CoordinateSpace.CAMERA_COORDINATES);
         sun.setTag(SUN_TAG);
 

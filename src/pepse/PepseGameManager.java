@@ -9,6 +9,7 @@ import danogl.gui.UserInputListener;
 import danogl.gui.WindowController;
 import danogl.util.Vector2;
 
+import pepse.world.Avatar;
 import pepse.world.daynight.Night;
 import pepse.world.daynight.Sun;
 import pepse.world.daynight.SunHalo;
@@ -24,10 +25,10 @@ import java.util.List;
 public class PepseGameManager extends GameManager {
 
     private static final String GAME_MANAGER_NAME = "pepse";
-    private static final float WINDOW_X = 700;
-    private static final float WINDOW_Y = 700;
+    private static final float WINDOW_X = 800;
+    private static final float WINDOW_Y = 800;
     public static final int CYCLE_LENGTH = 30;
-    public static final String SKY_TAG = "sky";
+    public static final float EARTH_HIGHT = 2/3f;
     private Vector2 windowDimensions;
 
 
@@ -40,16 +41,25 @@ public class PepseGameManager extends GameManager {
         super.initializeGame(imageReader, soundReader, inputListener, windowController);
         this.windowDimensions = windowController.getWindowDimensions();
         createSky(windowController);
-
         createNight(windowController);
         createSun(windowController);
-      
-        Terrain terrain = new Terrain(windowDimensions, 289);
+        createAvatar(imageReader, inputListener);
+        createTerrain();
+
+    }
+
+    private void createTerrain() {
+        Terrain terrain = new Terrain(windowDimensions, 0);
 
         List<Block> blocks = terrain.createInRange(0, (int) windowDimensions.x());
         for(Block block :blocks){
             gameObjects().addGameObject(block, Layer.STATIC_OBJECTS);
         }
+    }
+
+    private void createAvatar(ImageReader imageReader, UserInputListener inputListener) {
+        Avatar avatar = new Avatar(new Vector2(90,90), inputListener, imageReader); //should be changed
+        gameObjects().addGameObject(avatar);
     }
 
     private void createNight(WindowController windowController) {

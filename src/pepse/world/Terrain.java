@@ -43,7 +43,7 @@ public class Terrain {
             int y = (int) (Math.floor(groundHeightAt(x) / Block.SIZE) * Block.SIZE);
             for (int i = 0; i < TERRAIN_DEPTH; i++) {
                 // Create a block at calculated coordinates
-                Block block = new Block(new Vector2(x, y + i*Block.SIZE), rectangleRenderable);
+                Block block = new Block(new Vector2(x, y + i*Block.SIZE),  new RectangleRenderable(ColorSupplier.approximateColor(BASE_GROUND_COLOR)));
                 block.setTag(GROUND_TAG);
                 blockList.add(block);
             }
