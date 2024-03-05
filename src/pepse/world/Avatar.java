@@ -18,7 +18,7 @@ public class Avatar extends GameObject {
     private static final float GRAVITY = 1000;
     public static final float ENERGY_LOSE_RIGHT_LEFT_KEY = 0.5f;
     private static final int ENERGY_LOSE_SPACE_KEY = 10;
-    private static final int ENERGY_GAIN_NO_KEY_PRESSED = 1;
+    private static final float ENERGY_GAIN_NO_KEY_PRESSED = 0.1f;
     private final UserInputListener inputListener;
     private ImageReader imageReadr;
     public float energy = 100;
@@ -72,10 +72,9 @@ public class Avatar extends GameObject {
             renderer().setRenderable(jumpingAnimation);
         }
         else if (energy<=99 && getVelocity().y() == 0){
-            energy += ENERGY_GAIN_NO_KEY_PRESSED;
+            energy = ENERGY_GAIN_NO_KEY_PRESSED;
             renderer().setRenderable(restingAnimation);
-            System.out.println(energy);
-
         }
+        System.out.println(energy);
     }
 }
