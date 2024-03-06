@@ -7,6 +7,8 @@ import danogl.gui.UserInputListener;
 import danogl.gui.rendering.AnimationRenderable;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
+import pepse.world.trees.Fruit;
+
 import java.awt.event.KeyEvent;
 import java.util.function.Supplier;
 
@@ -22,6 +24,8 @@ public class Avatar extends GameObject {
     private static final int ENERGY_GAIN_NO_KEY_PRESSED = 1;
     public static final String INITIAL_AVATAR_ASSET = "assets/idle_0.png";
     public static final double TIME_BETWEEN_ANIMATIONS = 0.1;
+    public static final String AVATAR_TAG = "Avatar";
+    private static final int ENERGY_GAIN_BY_FRUIT = 10;
     private final UserInputListener inputListener;
     public float energy = 100;
     private boolean isAvatarFaceToRight = true;
@@ -40,6 +44,7 @@ public class Avatar extends GameObject {
         super(pos.subtract(new Vector2(AVATAR_WIDTH,-AVATAR_HEIGHT))  // button right corner
                 ,new Vector2(AVATAR_WIDTH, AVATAR_HEIGHT)
                 ,imageReader.readImage(INITIAL_AVATAR_ASSET,true));
+        this.setTag(AVATAR_TAG);
         physics().preventIntersectionsFromDirection(Vector2.ZERO);
         transform().setAccelerationY(GRAVITY);
         this.inputListener = inputListener;
@@ -57,6 +62,9 @@ public class Avatar extends GameObject {
         super.onCollisionEnter(other, collision);
         if(other.getTag().equals(Block.BLOCK_TAG)){
             transform().setVelocityY(0);
+        }
+        if(other.getTag().equals(Fruit.FRUIT_TAG)){
+            energy = Math.min(100, energy + ENERGY_GAIN_BY_FRUIT);
         }
     }
 

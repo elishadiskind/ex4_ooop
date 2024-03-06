@@ -2,13 +2,16 @@ package pepse.world.trees;
 
 
 import danogl.GameObject;
+import danogl.gui.rendering.OvalRenderable;
 import danogl.gui.rendering.RectangleRenderable;
 import danogl.util.Vector2;
 import pepse.util.ColorSupplier;
 import pepse.world.Block;
 
 import java.awt.*;
+import java.net.Inet4Address;
 import java.util.ArrayList;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.Random;
@@ -17,7 +20,6 @@ public class Flora {
     private static final double PROBABILITY_OF_CREATING_A_TREE = 0.1;
     private static final int FOLIAGE_SIZE = 8 * Block.SIZE;
     private static final int MIN_TRUNK_HEIGHT = FOLIAGE_SIZE / 2 + Block.SIZE;
-    private static final Color BASE_TRUNK_COLOR = new Color(100, 50, 20);
     private final Function<Float, Float> groundHeightFunc;
     private final Supplier<Boolean> getDetectAvatarJumps;
 
@@ -48,14 +50,16 @@ public class Flora {
                 if (random.nextBoolean()) {
                     treeParts.add(Leaf.create(getDetectAvatarJumps, new Vector2(x, y)));
                 }
-            }
+                if (random.nextDouble() < 0.05) {
+                    treeParts.add(new Fruit(new Vector2(x, y), getDetectAvatarJumps));
+                }}
         }
     }
 
     private void createTree(Random random, int x, ArrayList<GameObject> treeParts) {
         int height = MIN_TRUNK_HEIGHT + random.nextInt(3) * Block.SIZE;
         Trunk tempTrunk = new Trunk(new Vector2(x, groundHeightFunc.apply((float) x) - height) ,
-                new Vector2(Block.SIZE, height), new RectangleRenderable(ColorSupplier.approximateColor(BASE_TRUNK_COLOR)));
+                new Vector2(Block.SIZE, height), getDetectAvatarJumps);
         treeParts.add(tempTrunk);
         createLeaves(random, x,groundHeightFunc.apply((float) x) - height, treeParts);
     }
