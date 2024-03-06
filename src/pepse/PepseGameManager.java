@@ -102,7 +102,6 @@ public class PepseGameManager extends GameManager {
         gameObjects().addGameObject(sunHalo,Layer.BACKGROUND);
     }
 
-
     private void createSky(WindowController windowController) {
         GameObject sky = pepse.world.Sky.create(windowController.getWindowDimensions());
         gameObjects().addGameObject(sky, Layer.BACKGROUND);
