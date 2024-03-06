@@ -21,6 +21,7 @@ import pepse.world.Terrain;
 import pepse.world.trees.Flora;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class PepseGameManager extends GameManager {
 
@@ -30,6 +31,7 @@ public class PepseGameManager extends GameManager {
     public static final int CYCLE_LENGTH = 30;
     public static final float EARTH_HEIGHT = 2/3f;
     private Vector2 windowDimensions;
+    Supplier<Boolean> getDetectAvatarJumps;
 
 
     public PepseGameManager(String gameManagerName, Vector2 vector2) {
@@ -49,7 +51,7 @@ public class PepseGameManager extends GameManager {
     }
 
     private void createTreeWithFlora(Terrain terrain) {
-        Flora flora = new Flora(terrain.groundHeightFunc);
+        Flora flora = new Flora(terrain.groundHeightFunc,this.getDetectAvatarJumps);
         ArrayList<GameObject> arrayList =
                 flora.createInRange((int)windowDimensions.x(),(int)windowDimensions.y());
     }
@@ -67,6 +69,7 @@ public class PepseGameManager extends GameManager {
         Avatar avatar =
                 new Avatar(new Vector2(70,(windowDimensions.y() * EARTH_HEIGHT)), inputListener, imageReader);
         gameObjects().addGameObject(avatar);
+        this.getDetectAvatarJumps = avatar.getDetectAvatarJumps;
         createEnergy(avatar,windowDimensions);
     }
 

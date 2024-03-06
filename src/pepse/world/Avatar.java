@@ -26,6 +26,7 @@ public class Avatar extends GameObject {
     private final UserInputListener inputListener;
     public float energy = 100;
     private boolean isAvatarFaceToRight = true;
+    private boolean isAvatarJamped = false;
     String[] imagePathsRunning = {"assets/run_0.png","assets/run_1.png","assets/run_2.png","assets/run_3.png","assets/run_4.png","assets/run_5.png"};
 
     String[] imagePathsResting = {"assets/idle_0.png", "assets/idle_1.png", "assets/idle_2.png", "assets/idle_3.png"};
@@ -64,7 +65,7 @@ public class Avatar extends GameObject {
     public void update(float deltaTime) {
         super.update(deltaTime);
         float xVel = 0;
-
+        this.isAvatarJamped = false;
         if(inputListener.isKeyPressed(KeyEvent.VK_LEFT) &&
                 (energy > ENERGY_LOSE_RIGHT_LEFT_KEY)) {
             if(isAvatarFaceToRight) {
@@ -85,6 +86,7 @@ public class Avatar extends GameObject {
         transform().setVelocityX(xVel);  //updates the avatar to move to chosen side
          if(inputListener.isKeyPressed(KeyEvent.VK_SPACE) &&
                 getVelocity().y() == 0 && (energy >= ENERGY_LOSE_SPACE_KEY)){
+             this.isAvatarJamped = true;
             transform().setVelocityY(VELOCITY_Y);
             energy -= ENERGY_LOSE_SPACE_KEY;
             renderer().setRenderable(jumpingAnimation);
@@ -97,5 +99,6 @@ public class Avatar extends GameObject {
 
 
     public  Supplier<Float> getEnergyFunction = () -> energy;
+    public Supplier<Boolean> getDetectAvatarJumps = () -> isAvatarJamped;
 
 }
