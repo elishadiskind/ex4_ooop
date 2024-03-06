@@ -15,6 +15,7 @@ import pepse.world.Energy;
 import pepse.world.daynight.Night;
 import pepse.world.daynight.Sun;
 import pepse.world.daynight.SunHalo;
+import pepse.world.trees.Leaf;
 
 import pepse.world.Block;
 import pepse.world.Terrain;
@@ -26,7 +27,7 @@ import java.util.function.Supplier;
 public class PepseGameManager extends GameManager {
 
     private static final String GAME_MANAGER_NAME = "pepse";
-    private static final float WINDOW_X = 800;
+    private static final float WINDOW_X = 1000;
     private static final float WINDOW_Y = 800;
     public static final int CYCLE_LENGTH = 30;
     public static final float EARTH_HEIGHT = 2/3f;
@@ -55,8 +56,13 @@ public class PepseGameManager extends GameManager {
         ArrayList<GameObject> arrayList =
                 flora.createInRange(0, (int)windowDimensions.x());
         for(GameObject object: arrayList){
-            gameObjects().addGameObject(object);
+            if(object.getTag().equals(Leaf.LEAF_TAG)){
+            gameObjects().addGameObject(object,10);
         }
+        else{
+            gameObjects().addGameObject(object,-110);
+        }
+    }
     }
 
     private void createTerrain() {

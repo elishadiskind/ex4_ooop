@@ -15,7 +15,7 @@ public class Avatar extends GameObject {
     public static final int AVATAR_HEIGHT = 30;
     public static final int AVATAR_WIDTH = 30;
     private static final float VELOCITY_X = 400;
-    private static final float VELOCITY_Y = -650;
+    private static final float VELOCITY_Y = -800;
     private static final float GRAVITY = 1000;
     public static final float ENERGY_LOSE_RIGHT_LEFT_KEY = 0.5f;
     private static final int ENERGY_LOSE_SPACE_KEY = 10;
@@ -97,7 +97,9 @@ public class Avatar extends GameObject {
     }
 
 
-    public  Supplier<Float> getEnergyFunction = () -> energy;
+    public Supplier<Float> getEnergyFunction = () -> energy;
     public Supplier<Boolean> getDetectAvatarJumps = () -> isAvatarJamped;
+
+
 
 }

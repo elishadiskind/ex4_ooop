@@ -24,7 +24,7 @@ public class Flora {
 
     public Flora(Function<Float,Float> groundHeightFunc, Supplier<Boolean> getDetectAvatarJumps) {
         this.groundHeightFunc = groundHeightFunc;
-        this.getDetectAvatarJumps =getDetectAvatarJumps;
+        this.getDetectAvatarJumps = getDetectAvatarJumps;
     }
 
     public ArrayList<GameObject> createInRange(int minX, int maxX){
