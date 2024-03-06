@@ -7,13 +7,12 @@ import danogl.gui.UserInputListener;
 import danogl.gui.rendering.AnimationRenderable;
 import danogl.gui.rendering.Renderable;
 import danogl.util.Vector2;
-
 import java.awt.event.KeyEvent;
 import java.util.function.Supplier;
 
 
 public class Avatar extends GameObject {
-    public static final int AVATAR_HIGHT = 30;
+    public static final int AVATAR_HEIGHT = 30;
     public static final int AVATAR_WIDTH = 30;
     private static final float VELOCITY_X = 400;
     private static final float VELOCITY_Y = -650;
@@ -38,8 +37,8 @@ public class Avatar extends GameObject {
 
 
     public Avatar(Vector2 pos, UserInputListener inputListener, ImageReader imageReader){
-        super(pos.subtract(new Vector2(AVATAR_WIDTH,-AVATAR_HIGHT))  // button right corner
-                ,new Vector2(AVATAR_WIDTH,AVATAR_HIGHT)
+        super(pos.subtract(new Vector2(AVATAR_WIDTH,-AVATAR_HEIGHT))  // button right corner
+                ,new Vector2(AVATAR_WIDTH, AVATAR_HEIGHT)
                 ,imageReader.readImage(INITIAL_AVATAR_ASSET,true));
         physics().preventIntersectionsFromDirection(Vector2.ZERO);
         transform().setAccelerationY(GRAVITY);
