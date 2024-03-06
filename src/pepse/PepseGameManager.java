@@ -53,7 +53,10 @@ public class PepseGameManager extends GameManager {
     private void createTreeWithFlora(Terrain terrain) {
         Flora flora = new Flora(terrain.groundHeightFunc,this.getDetectAvatarJumps);
         ArrayList<GameObject> arrayList =
-                flora.createInRange((int)windowDimensions.x(),(int)windowDimensions.y());
+                flora.createInRange(0, (int)windowDimensions.x());
+        for(GameObject object: arrayList){
+            gameObjects().addGameObject(object);
+        }
     }
 
     private void createTerrain() {
