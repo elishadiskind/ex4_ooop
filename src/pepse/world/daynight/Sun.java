@@ -25,6 +25,9 @@ public class Sun {
      * The size of the sun GameObject.
      */
     public static final int SUN_SIZE = 50;
+    private static final float HALF = 0.5f;
+    private static final float INIT_SUN_ANGLE = 0f;
+    private static final float FINAL_SUN_ANGLE = 360f;
 
     /**
      * Creates a sun GameObject with a yellow oval renderable, transitioning its position in a circular path
@@ -39,9 +42,9 @@ public class Sun {
         GameObject sun = new GameObject(Vector2.ZERO,
                 new Vector2(SUN_SIZE, SUN_SIZE),
                 new OvalRenderable(Color.YELLOW));
-        sun.setCenter(windowDimensions.mult(0.5f));
-        Vector2 initialSunCenter = windowDimensions.mult(0.5f).subtract(new Vector2(SUN_SIZE, SUN_SIZE));
-        Vector2 cycleCenter = new Vector2(windowDimensions.mult(0.5f).x(),
+        sun.setCenter(windowDimensions.mult(HALF));
+        Vector2 initialSunCenter = windowDimensions.mult(HALF).subtract(new Vector2(SUN_SIZE, SUN_SIZE));
+        Vector2 cycleCenter = new Vector2(windowDimensions.mult(HALF).x(),
                 windowDimensions.mult(PepseGameManager.EARTH_HEIGHT).y());
         sun.setCoordinateSpace(CoordinateSpace.CAMERA_COORDINATES);
         sun.setTag(SUN_TAG);
@@ -50,8 +53,8 @@ public class Sun {
         new Transition<>(sun,
                 (Float angle) ->
                      sun.setCenter(initialSunCenter.subtract(cycleCenter).rotated(angle).add(cycleCenter)),
-                0f,
-                360f,
+                INIT_SUN_ANGLE,
+                FINAL_SUN_ANGLE,
                 Transition.LINEAR_INTERPOLATOR_FLOAT,
                 cycleLength,
                 Transition.TransitionType.TRANSITION_LOOP,

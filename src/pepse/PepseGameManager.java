@@ -54,6 +54,7 @@ public class PepseGameManager extends GameManager {
      * The height of the earth relative to the window dimensions.
      */
     public static final float EARTH_HEIGHT = 2 / 3f;
+    public static final int LEAF_LAYER = -30;
 
     /**
      * The dimensions of the game window.
@@ -108,7 +109,7 @@ public class PepseGameManager extends GameManager {
         for (GameObject object : arrayList) {
             if (object.getTag().equals(Leaf.LEAF_TAG)) {
                 // Adds leaves to the game objects list with -30 layer
-                gameObjects().addGameObject(object, -30);
+                gameObjects().addGameObject(object, LEAF_LAYER);
             } else if (object.getTag().equals(Trunk.TRUNK_TAG)) {
                 // Adds trunk to the game objects list with STATIC_OBJECTS layer
                 gameObjects().addGameObject(object, Layer.STATIC_OBJECTS);
