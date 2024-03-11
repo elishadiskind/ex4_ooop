@@ -6,6 +6,7 @@ import danogl.gui.ImageReader;
 import danogl.gui.rendering.TextRenderable;
 import danogl.util.Vector2;
 
+import java.awt.*;
 import java.util.function.Supplier;
 
 /**
@@ -18,6 +19,11 @@ public class Energy {
      * The tag associated with the energy object.
      */
     private static final String ENERGY_TAG = "energy";
+    public static final Vector2 TEXT_SIZE_VECTOR = new Vector2(23, 23);
+    public static final int ENERGY_PLACE = 50;
+    public static final String INITIAL_ENERGY_VAL = "100";
+    public static final String FONT = "Monospaced";
+    public static final String PRECENT_CHAR = "%";
 
     /**
      * Creates a new energy GameObject with the specified window dimensions and a function to retrieve energy value.
@@ -29,9 +35,9 @@ public class Energy {
     public static GameObject create(Vector2 windowDimensions, Supplier<Float> getEnergyFunc) {
         // Create the energy GameObject with initial properties
         GameObject energy = new GameObject(
-                new Vector2(50, windowDimensions.y() - 50),
-                new Vector2(20, 20),
-                new TextRenderable("100"));
+                new Vector2(ENERGY_PLACE, windowDimensions.y() - ENERGY_PLACE),
+                TEXT_SIZE_VECTOR,
+                new TextRenderable(INITIAL_ENERGY_VAL));
 
         // Set the coordinate space to CAMERA_COORDINATES
         energy.setCoordinateSpace(CoordinateSpace.CAMERA_COORDINATES);
@@ -41,8 +47,9 @@ public class Energy {
 
         // Add a component to update the energy value dynamically
         energy.addComponent(deltaTime ->
-                energy.renderer().setRenderable(new TextRenderable(String.valueOf(getEnergyFunc.get()))));
+                energy.renderer().setRenderable(
+                        new TextRenderable(getEnergyFunc.get().intValue() + PRECENT_CHAR, FONT,false,true)));
 
-        return energy;
+          return energy;
     }
 }

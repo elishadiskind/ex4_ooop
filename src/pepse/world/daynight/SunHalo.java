@@ -15,6 +15,8 @@ public class SunHalo {
      * The tag associated with the sun halo GameObject.
      */
     private static final String SUN_HALO_TAG = "sunHalo";
+    public static final float HALO_SIZE_FACTOR = 2f;
+    public static final Color HALO_COLOR = new Color(255, 255, 0, 20);
 
     /**
      * Creates a sun halo GameObject around the specified sun GameObject with a translucent oval renderable.
@@ -26,8 +28,8 @@ public class SunHalo {
     public static GameObject create(GameObject sun) {
         // Creates the sun halo GameObject with a translucent oval renderable
         GameObject sunHalo = new GameObject(Vector2.ZERO,
-                new Vector2(Sun.SUN_SIZE * 1.5f, Sun.SUN_SIZE * 1.5f),
-                new OvalRenderable(new Color(255, 255, 0, 20)));
+                new Vector2(Sun.SUN_SIZE * HALO_SIZE_FACTOR, Sun.SUN_SIZE * HALO_SIZE_FACTOR),
+                new OvalRenderable(HALO_COLOR));
         sunHalo.setCenter(sun.getCenter());
         sun.setCoordinateSpace(CoordinateSpace.CAMERA_COORDINATES);
         sun.setTag(SUN_HALO_TAG);

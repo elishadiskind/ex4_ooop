@@ -24,6 +24,7 @@ import pepse.world.trees.Trunk;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Supplier;
 
 /**
@@ -55,6 +56,7 @@ public class PepseGameManager extends GameManager {
      */
     public static final float EARTH_HEIGHT = 2 / 3f;
     public static final int LEAF_LAYER = -30;
+    public static final int AVATAR_INITIAL_X = 30;
 
     /**
      * The dimensions of the game window.
@@ -105,7 +107,7 @@ public class PepseGameManager extends GameManager {
      */
     private void createTreeWithFlora(Terrain terrain) {
         Flora flora = new Flora(terrain.groundHeightFunc, this.getDetectAvatarJumps);
-        ArrayList<GameObject> arrayList = flora.createInRange(31, (int) windowDimensions.x());
+        ArrayList<GameObject> arrayList = flora.createInRange(AVATAR_INITIAL_X+1, (int) windowDimensions.x());
         for (GameObject object : arrayList) {
             if (object.getTag().equals(Leaf.LEAF_TAG)) {
                 // Adds leaves to the game objects list with -30 layer
@@ -124,7 +126,7 @@ public class PepseGameManager extends GameManager {
      * Creates the terrain and adds it to the game objects list.
      */
     private void createTerrain() {
-        Terrain terrain = new Terrain(windowDimensions, 0);
+        Terrain terrain = new Terrain(windowDimensions, new Random().nextInt());
         List<Block> blocks = terrain.createInRange(0, (int) windowDimensions.x());
         for (Block block : blocks) {
             // Adds blocks to the game objects list with STATIC_OBJECTS layer
@@ -140,7 +142,7 @@ public class PepseGameManager extends GameManager {
      * @param inputListener The user input listener for handling avatar inputs.
      */
     private void createAvatar(ImageReader imageReader, UserInputListener inputListener) {
-        Avatar avatar = new Avatar(new Vector2(30, (int) windowDimensions.y() - (windowDimensions.y() * EARTH_HEIGHT)),
+        Avatar avatar = new Avatar(new Vector2(AVATAR_INITIAL_X, (int) windowDimensions.y() - (windowDimensions.y() * EARTH_HEIGHT)),
                 inputListener, imageReader);
         // Adds avatar to the game objects list
         gameObjects().addGameObject(avatar);
