@@ -1,16 +1,30 @@
 shiragelbstein, elishadiskind
 212926737, 208782656
 
-The "tree" package contains 4 classes representing elements of the game's trees. The classes are: leaf, fruit, trunk, and Flora management. These classes is beeing called at flora manager to create and manage the game's trees who calles the flora and completing the proccess.
+The "tree" package contains 4 classes representing elements of the game's trees. The classes are: leaf, fruit,
+trunk, and Flora management. These classes is being called at flora manager to create and manage the game's
+trees who calls the flora and completing the process.
 
-Flora class :
+We were asked:  1-to describe the classes we added to the package. 2-describe the relation between the classes
+3-explain the design pattern. we will do the last tow for each class separately.
 
-+Class overview
-The Flora class serves as the central manager within the package, taking responsibility for the creation and supervision of the game's trees. It offers static method for generating trees randomly within a specified X coordinate range of the game window. This process is influenced by the ground height function and avatar jump detection provided during its intialisiation.
+Flora class:
+
++Class overview:
+The Flora class serves as the central manager within the package, taking responsibility for the creation and
+supervision of the game's trees. It offers method for generating trees randomly within a specified X
+coordinate range of the game window. This process is influenced by the ground height function and avatar jump
+detection provided during its initialization.
+
++Relation with other classes:
+The Flora class compose all other classes Leaf Fruit and Trunk.
 
 +Design Decision:
-The class utilizes the constructors or static creation methods of Trunk, Leaf, and Fruit for creating their instances (dependencies relation) and compiles them into a list that is then returned to the caller. Consequently, there is no need for Composition or Inheritance.
-The class maintains no direct dependencies on the Terrain or Avatar classes. Instead, it uses the functional interfaces provided in the constructor:
+The class utilizes the constructors or static creation methods of Trunk, Leaf, and Fruit for creating their
+instances (dependencies relation) and compiles them into a list that is then returned to the caller.
+Consequently, there is no need for Composition or Inheritance.
+The class maintains no direct dependencies on the Terrain or Avatar classes. Instead, it uses the functional
+interfaces provided in the constructor:
 Function<Float, Float> groundHeightFunc = this::groundHeightAt;
 Supplier<Boolean> getDetectAvatarJumps = () -> isAvatarJumped;
 
@@ -20,20 +34,70 @@ Initializes the class with the provided lambdas
 
 *public ArrayList<GameObject> createInRange(int minX, int maxX):
 Generates and returns an ArrayList of flora GameObjects within the specified X coordinate range.
-Randomly creates trees(trunks, fruits, and leaves) and their components, influenced by ground height and jump detection. inserting each game object as an indevidual into the list .
+Randomly creates trees(trunks, fruits, and leaves) and their components, influenced by ground height and jump
+detection. inserting each game object as an individual into the list .
 Utilizes private methods for readability and to encapsulate specific functionalities.
 
 Leaf class:
 
 +Class overview
-The Leaf class is designed to represent a leaf GameObject with distinctive properties and dynamic behaviors. It facilitates the creation and management of leaf instances, incorporating features such as swaying and responding appropriately when the avatar is in a jumping state.
+The Leaf class is designed to represent a leaf GameObject with distinctive properties and dynamic behaviors.
+It facilitates the creation and management of leaf instances, incorporating features such as swaying and
+responding appropriately when the avatar is in a jumping state.
+
++Relation with other classes:
+The class don't compose/use any of the other classes in the package.
 
 +Design Decision:
-The decision to implement the Leaf class without inheritance from GameObject is deliberate, guided by the absence of a need to override standard methods like onCollision and update. Instead, the class leverages the addComponent method, offering a more flexible and modular approach. By doing so we
+The decision to implement the Leaf class without inheritance from GameObject is deliberate, guided by the
+absence of a need to override standard methods like onCollision and update. Instead, the class leverages the
+addComponent method, offering a more flexible and modular approach. By doing so we
 avoidance of unnecessary overrides and simplified maintenance- thanks to the use of functional interface.
 
 +Public Methods:
 *public static GameObject create(Supplier<Boolean> Detector, Vector2 topLeftCorner):
 Creates and returns a new leaf GameObject with random scheduled transitions for the leaves swaying,
-And one additinal transition that Takes a jump detection supplier and apply transition when ever the
-detecter is true. jump detection transition is using the "addComponent" bulidin method in the dano lab that being called each deltatime.
+And one additional transition that Takes a jump detection supplier and apply transition when ever the
+detector is true. jump detection transition is using the "addComponent" building method in the dano lab that
+being called each deltaTime.
+
+Trunk class:
+
++Class overview
+The Trunk class is used to produce trunk in a given size to a tree, the class is also responsible to manage
+the trunk color when the avatar jumping.
+
++Relation with other classes:
+The class don't compose/use any of the other classes in the package.
+
++Design Decision:
+The class extends GameObject in order to sets the physics so other object will not pass throw the trunk, and
+if an object is collusion with the trunk the trunk will not move similar to the Block, we could build the
+trunk with Blocks but we think that building class only for trunks make the code simpler and more abstract.
+moreover building the trunks with Blocks will make us build trunks only with size that is multiple of 30.
+Since we inheriting from GameObject we maneged the color changing by overriding the update method.
+
++Public Methods:
+only constructor and update.
+
+Fruit class:
+
++Class overview:
+The Fruit class represents a fruit GameObject within the game. It serves as an edible object that appears on
+the trees. The fruit changes its appearance when the avatar jumps and disappears temporarily upon collision
+with the avatar.
+
++Relation with other classes:
+The Fruit class does not directly interact with other classes within its package. However, it relies on
+collision detection with the Avatar class to trigger its disappearance.
+
++Design Decision:
+The class inherits from the GameObject class to leverage its functionalities for rendering and collision
+detection. This decision allows for easier management of the fruit's behavior within the game environment.
+The color-changing feature is implemented by overriding the update method, ensuring that the fruit's
+appearance reflects avatar actions dynamically. Additionally, the temporary disappearance upon collision is
+facilitated through the onCollisionEnter method, providing seamless interaction between the avatar and the
+fruit.
+
+Public Methods:
+Only constructor update and onCollisionEnter.

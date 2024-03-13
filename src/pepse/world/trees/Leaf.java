@@ -114,7 +114,7 @@ public class Leaf {
 
         // Introduce a random wait time before starting both transitions for a realistic leaves swaying
         Random random = new Random();
-        double waitTime = random.nextDouble(2);
+        double waitTime = random.nextDouble()*2;
         new ScheduledTask(leaf, (float) waitTime, false, bothTransitions);
     }
 }
