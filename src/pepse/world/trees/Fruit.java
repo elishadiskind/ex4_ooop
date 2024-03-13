@@ -34,6 +34,9 @@ public class Fruit extends GameObject {
      * The tag set when the fruit is not edible - not in the game.
      */
     private static final String FRUIT_IS_NOT_EDIBLE_TAG = "Fruit is not edible";
+    /**
+     * The color delta - influenced the change in the color while jumping.
+     */
     public static final int COLOR_DELTA = 70;
 
     /**

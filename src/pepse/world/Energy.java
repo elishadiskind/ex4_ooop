@@ -2,11 +2,9 @@ package pepse.world;
 
 import danogl.GameObject;
 import danogl.components.CoordinateSpace;
-import danogl.gui.ImageReader;
 import danogl.gui.rendering.TextRenderable;
 import danogl.util.Vector2;
 
-import java.awt.*;
 import java.util.function.Supplier;
 
 /**
@@ -19,11 +17,26 @@ public class Energy {
      * The tag associated with the energy object.
      */
     private static final String ENERGY_TAG = "energy";
+    /**
+     * The text size of the energy displayed.
+     */
     public static final Vector2 TEXT_SIZE_VECTOR = new Vector2(23, 23);
+    /**
+     * The location.
+     */
     public static final int ENERGY_PLACE = 50;
+    /**
+     * The energy value at the beginning.
+     */
     public static final String INITIAL_ENERGY_VAL = "100";
+    /**
+     * The text display font.
+     */
     public static final String FONT = "Monospaced";
-    public static final String PRECENT_CHAR = "%";
+    /**
+     * Present.
+     */
+    public static final String PRESENT_CHAR = "%";
 
     /**
      * Creates a new energy GameObject with the specified window dimensions and a function to retrieve energy
@@ -49,7 +62,7 @@ public class Energy {
         // Add a component to update the energy value dynamically
         energy.addComponent(deltaTime ->
                 energy.renderer().setRenderable(
-                        new TextRenderable(getEnergyFunc.get().intValue() + PRECENT_CHAR, FONT,
+                        new TextRenderable(getEnergyFunc.get().intValue() + PRESENT_CHAR, FONT,
                                 false,true)));
 
           return energy;

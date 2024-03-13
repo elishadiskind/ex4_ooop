@@ -16,7 +16,13 @@ public class SunHalo {
      * The tag associated with the sun halo GameObject.
      */
     private static final String SUN_HALO_TAG = "sunHalo";
+    /**
+     * The halo size factor.
+     */
     public static final float HALO_SIZE_FACTOR = 2f;
+    /**
+     * The halo color.
+     */
     public static final Color HALO_COLOR = new Color(255, 255, 0, 20);
 
     /**

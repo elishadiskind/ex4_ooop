@@ -55,7 +55,13 @@ public class PepseGameManager extends GameManager {
      * The height of the earth relative to the window dimensions.
      */
     public static final float EARTH_HEIGHT = 2 / 3f;
+    /**
+     * The Leaf layer.
+     */
     public static final int LEAF_LAYER = -30;
+    /**
+     * The Avatar layer.
+     */
     public static final int AVATAR_INITIAL_X = 30;
 
     /**
