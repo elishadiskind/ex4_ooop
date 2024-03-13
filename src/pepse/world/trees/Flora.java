@@ -78,19 +78,22 @@ public class Flora {
     }
 
     /**
-     * Generates leaves and fruits around a tree location, adding them to the specified ArrayList of GameObjects.
+     * Generates leaves and fruits around a tree location, adding them to the specified ArrayList of
+     * GameObjects.
      *
      * @param random           The Random instance for randomization.
      * @param treeLocationX    The X coordinate of the tree.
      * @param treeLocationY    The Y coordinate of the tree.
      * @param treeParts        The list of GameObjects to add the objects to.
      */
-    private void createLeaves(Random random, int treeLocationX, float treeLocationY, ArrayList<GameObject> treeParts) {
+    private void createLeaves(Random random, int treeLocationX, float treeLocationY,
+                              ArrayList<GameObject> treeParts) {
         int leafXLocation = (int) (treeLocationX - FOLIAGE_SIZE / 2 + 0.5 * Block.SIZE);
 
         // Generate leaves and occasional fruits around the tree
         for (int x = leafXLocation; x < FOLIAGE_SIZE + leafXLocation; x += Block.SIZE) {
-            for (float y = treeLocationY - FOLIAGE_SIZE / 2f; y < treeLocationY + FOLIAGE_SIZE / 2f; y += Block.SIZE) {
+            for (float y = treeLocationY - FOLIAGE_SIZE / 2f; y < treeLocationY + FOLIAGE_SIZE / 2f;
+                 y += Block.SIZE) {
                 if (random.nextBoolean()) {
                     treeParts.add(Leaf.create(getDetectAvatarJumps, new Vector2(x, y)));
                 }
@@ -102,7 +105,8 @@ public class Flora {
     }
 
     /**
-     * Generates a tree with a trunk and associated leaves, adding them to the specified ArrayList of GameObjects.
+     * Generates a tree with a trunk and associated leaves, adding them to the specified ArrayList of
+     * GameObjects.
      *
      * @param random     The Random instance for random choosing the trunk height.
      * @param x          The X coordinate for tree creation.

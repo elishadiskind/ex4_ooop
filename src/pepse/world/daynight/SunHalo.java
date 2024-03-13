@@ -7,7 +7,8 @@ import danogl.util.Vector2;
 import java.awt.*;
 
 /**
- * The SunHalo class provides a static method to create a GameObject representing the halo around the sun in a game.
+ * The SunHalo class provides a static method to create a GameObject representing the halo around the sun in a
+ * game.
  */
 public class SunHalo {
 

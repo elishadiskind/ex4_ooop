@@ -32,7 +32,8 @@ public class Sky {
      */
     public static GameObject create(Vector2 windowDimensions) {
         // Create the sky GameObject with initial properties
-        GameObject sky = new GameObject(Vector2.ZERO, windowDimensions, new RectangleRenderable(BASIC_SKY_COLOR));
+        GameObject sky = new GameObject(Vector2.ZERO, windowDimensions,
+                new RectangleRenderable(BASIC_SKY_COLOR));
 
         // Set the coordinate space to CAMERA_COORDINATES
         sky.setCoordinateSpace(CoordinateSpace.CAMERA_COORDINATES);

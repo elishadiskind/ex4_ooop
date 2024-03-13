@@ -142,7 +142,8 @@ public class PepseGameManager extends GameManager {
      * @param inputListener The user input listener for handling avatar inputs.
      */
     private void createAvatar(ImageReader imageReader, UserInputListener inputListener) {
-        Avatar avatar = new Avatar(new Vector2(AVATAR_INITIAL_X, (int) windowDimensions.y() - (windowDimensions.y() * EARTH_HEIGHT)),
+        Avatar avatar = new Avatar(new Vector2(AVATAR_INITIAL_X, (int) windowDimensions.y() -
+                (windowDimensions.y() * EARTH_HEIGHT)),
                 inputListener, imageReader);
         // Adds avatar to the game objects list
         gameObjects().addGameObject(avatar);

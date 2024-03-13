@@ -44,7 +44,8 @@ public class Terrain {
     private final int groundHeightAtX0;
 
     /**
-     * Constructs a new {@code Terrain} instance with the specified window dimensions and seed for the noise generator.
+     * Constructs a new {@code Terrain} instance with the specified window dimensions and seed for the noise
+     * generator.
      *
      * @param windowDimensions The dimensions of the game window.
      * @param seed             The seed for the noise generator.

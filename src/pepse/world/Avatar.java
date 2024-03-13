@@ -149,11 +149,14 @@ public class Avatar extends GameObject {
         transform().setAccelerationY(GRAVITY);
         this.inputListener = inputListener;
         this.runningAnimation =
-                new AnimationRenderable(imagePathsRunning, imageReader, true, TIME_BETWEEN_ANIMATIONS);
+                new AnimationRenderable(imagePathsRunning, imageReader, true,
+                        TIME_BETWEEN_ANIMATIONS);
         this.restingAnimation =
-                new AnimationRenderable(imagePathsResting, imageReader, true, TIME_BETWEEN_ANIMATIONS);
+                new AnimationRenderable(imagePathsResting, imageReader, true,
+                        TIME_BETWEEN_ANIMATIONS);
         this.jumpingAnimation =
-                new AnimationRenderable(imagePathsJump, imageReader, true, TIME_BETWEEN_ANIMATIONS);
+                new AnimationRenderable(imagePathsJump, imageReader, true,
+                        TIME_BETWEEN_ANIMATIONS);
     }
 
     /**
@@ -210,7 +213,8 @@ public class Avatar extends GameObject {
         transform().setVelocityX(xVel);  // Updates the avatar to move to the chosen side
 
         // Handling space key input for jumping
-        if (inputListener.isKeyPressed(KeyEvent.VK_SPACE) && getVelocity().y() == 0 && (energy >= ENERGY_LOSE_SPACE_KEY)) {
+        if (inputListener.isKeyPressed(KeyEvent.VK_SPACE) && getVelocity().y() == 0 &&
+                (energy >= ENERGY_LOSE_SPACE_KEY)) {
             this.isAvatarJumped = true;
             transform().setVelocityY(VELOCITY_Y);
             energy -= ENERGY_LOSE_SPACE_KEY;

@@ -38,7 +38,8 @@ public class Night {
      */
     public static GameObject create(Vector2 windowDimensions, float cycleLength) {
         // Creates the night GameObject with a black rectangle renderer
-        GameObject night = new GameObject(Vector2.ZERO, windowDimensions, new RectangleRenderable(Color.BLACK));
+        GameObject night = new GameObject(Vector2.ZERO, windowDimensions,
+                new RectangleRenderable(Color.BLACK));
         night.setCoordinateSpace(CoordinateSpace.CAMERA_COORDINATES);
         night.setTag(NIGHT_TAG);
 

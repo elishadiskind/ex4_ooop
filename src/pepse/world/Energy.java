@@ -26,7 +26,8 @@ public class Energy {
     public static final String PRECENT_CHAR = "%";
 
     /**
-     * Creates a new energy GameObject with the specified window dimensions and a function to retrieve energy value.
+     * Creates a new energy GameObject with the specified window dimensions and a function to retrieve energy
+     * value.
      *
      * @param windowDimensions The dimensions of the game window.
      * @param getEnergyFunc    A supplier function providing the current energy value.
@@ -48,7 +49,8 @@ public class Energy {
         // Add a component to update the energy value dynamically
         energy.addComponent(deltaTime ->
                 energy.renderer().setRenderable(
-                        new TextRenderable(getEnergyFunc.get().intValue() + PRECENT_CHAR, FONT,false,true)));
+                        new TextRenderable(getEnergyFunc.get().intValue() + PRECENT_CHAR, FONT,
+                                false,true)));
 
           return energy;
     }
